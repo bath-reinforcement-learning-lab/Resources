@@ -58,7 +58,7 @@ For ease of understanding, this tutorial will assume that you will always want t
     
     (note you must save it as your username followed by whatever you want - so an example would be tc2034/tomsmujoco)
     
-9. Remove the container
+9. Remove the container (please always remember to remove containers - Tom makes this point many times)
     
     ```bash
     hare rm <container name>
