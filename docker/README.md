@@ -72,4 +72,4 @@ For ease of understanding, this tutorial will assume that you will always want t
     
     Then you can run your code as you usually would within a terminal!
     
-11. You will have also created a Dockerfile. Save this somewhere, and you will be able to reproduce this exact same image on a new computer if required.
+11. You will have also created a Dockerfile (because you would have been updating it as you go ...). Save this somewhere, and you will be able to reproduce this exact same image on a new computer if required.
