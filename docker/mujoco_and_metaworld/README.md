@@ -9,7 +9,7 @@ Unfortunately, it’s not quite as simple as just building the image. There are 
 2. Extract them and move them to your Hex area. I use:
     
     ```bash
-    rsync -uav .mujoco tc2034@aching.cs.bath.ac.uk
+    rsync -uav .mujoco tc2034@aching.cs.bath.ac.uk:~/
     ```
     
 3. Download the Dockerfile here and also move them to your hex area
