@@ -13,10 +13,10 @@ Unfortunately, it’s not quite as simple as just building the image. There are 
     ```
     
 3. Download the Dockerfile here and also move them to your hex area
-4. Log into Hex and build the image:
+4. Log into Hex and build the image: (note the dot at the end!)
     
     ```bash
-    hare build -t <my username>/<my image name>
+    hare build -t <my username>/<my image name> .
     ```
     
 5. Start the container as we have done in the tutorial:
