@@ -21,7 +21,7 @@ Setup SSH key for logging in and copying files without password verification.
 # Create new SSH key exclusively for Hex
 ssh-keygen -t rsa -b 4096 -C "pp2024@bath.ac.uk" -f ~/.ssh/hex_id_rsa
 # Add key to OpenSSH auth agent
-ssh-add -K ~/.ssh/hex_id_rsa
+ssh-add -K ~/.ssh/hex_id_rsa  # only use the -K option if you are on macOS
 # Copy key to Hex
 scp ~/.ssh/hex_id_rsa.pub pp2024@garlick.cs.bath.ac.uk:~/temp_id_rsa.pub
 # Login to Hex to add this public key to the authorized keys
