@@ -1,6 +1,6 @@
 # 0. Instructions
 - Replace **pp2024** with your username in this tutorial & avoid skipping non-optional sections.
-- I am using **pp2024-rl-dev-container** as the container name for everything here. Please use a different one otherwise you will have a clash with my containers. Also, if you use more than one container you'll need to add a suffix, e.g. pp2024-rl-dev-container-1, pp2024-rl-dev-container-2
+- I am using **pp2024-rl-dev-container** as the container name for everything here. Please use a different container name because otherwise, you will clash with my containers. Also, if you use more than one container, you'll need to add a suffix, e.g. pp2024-rl-dev-container-1, pp2024-rl-dev-container-2
 - How to use this tutorial: fork it and keep your own template with your own package dependencies
 
 # 1. Log into Hex
@@ -15,7 +15,7 @@ ssh pp2024@garlick.cs.bath.ac.uk
 
 ## 1.2 Advanced way (optional, convenience)
 
-Setup SSH key for logging in and copying files without password verification.
+Set up an SSH key for logging in and copying files without password verification.
 
 ```bash
 # Create new SSH key exclusively for Hex
@@ -50,13 +50,13 @@ hex garlick
 ```
 
 # 2. TLDR Rules
-- When choosing what GPU to use or what server to choose to connect to **PLEASE** check the [usage page of Hex](https://hex.cs.bath.ac.uk/usage). Here I use garlick and some random GPUs from it for demonstration only
+- When choosing what GPU to use or what server to choose to connect to **PLEASE** check the [usage page of Hex](https://hex.cs.bath.ac.uk/usage). Here, I use *garlick* and some random GPUs from it for demonstration only
 - Leave at least 1 GPU free
 - Avoid MSc nodes during summer
 - Home directory < 50 GB
 - Watch memory & compute usage of your jobs (top, htop, nvidia-smi, hare usage)
 - Release directories in /mnt/fast* when done
-- GPU cloud storage isn't backed up, backup your important files
+- GPU cloud storage isn't backed up. Backup your important files
 
   
 # 3. Running jobs on Hex
@@ -67,12 +67,12 @@ In this tutorial, I've included a directory called `my-local-code-repo`. We will
 - Create a queue of jobs using the code of `my-local-code-repo` and run them all inside a container on Hex.
 
 ## 3.1 Basic Hex setup + Copy your code on Hex
-When on Hex, always work in one of the fast mounted drives (scratch space), but delete your files when you're done if you're handling big (10 GB) amounts of data. These fast drives can be found on [https://hex.cs.bath.ac.uk/usage](https://hex.cs.bath.ac.uk/usage) e.g. `/mnt/fast0`, pick one with enough space. fast=SSD, faster=NVME.
+When on Hex, always work on one of the fast-mounted drives (scratch space), but delete your files when you're done if you're handling big (10 GB) amounts of data. These fast drives can be found on [https://hex.cs.bath.ac.uk/usage](https://hex.cs.bath.ac.uk/usage), e.g. `/mnt/fast0`, pick one with enough space. fast=SSD, faster=NVME.
 
 ```bash
 # Once you ssh to Hex
 cd /mnt/fast0
-# Create a directory with your username (if not exists)
+# Create a directory with your username (if it does not exist)
 mkdir -p pp2024
 hare reserve pp2024
 # To reserve a random port (optional)
@@ -89,7 +89,7 @@ hare help <command>
 rsync -uavz --progress my-local-code-repo pp2024@garlick.cs.bath.ac.uk:/mnt/fast0/pp2024
 ```
 
-If you write code locally, you'll need to run `rsync -uavz --progress my-local-code-repo pp2024@garlick.cs.bath.ac.uk:/mnt/fast0/pp2024` whenever you want to run something on Hex (if you love over-engineering, create a script that runs whenever you save your editor that automatically runs the `rsync` command - can't include in this tutorial because it depends on the editor you're using). Alternatively you can code directly on Hex (e.g. using [this extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).
+If you write code locally, you'll need to run `rsync -uavz --progress my-local-code-repo pp2024@garlick.cs.bath.ac.uk:/mnt/fast0/pp2024` whenever you want to run something on Hex (if you love over-engineering, create a script that runs whenever you save your editor that automatically runs the `rsync` command - can't include in this tutorial because it depends on the editor you're using). Alternatively, you can code directly on Hex (e.g. using [this extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).
 
 ## 3.2 Run job using Hare
 Hare is a wrapper on top of Docker used on Hex (adds a security layer). Hare also handles reserving storage and ports. I provide a `Dockerfile` and `requirements.txt` in `my-local-code-repo`. Both of these files should also be added to your code repository as they together handle the building of the Docker image. We are going to build it and run a container using hare. Everything from now on happens inside Hex, **not** on your local machine.
@@ -179,33 +179,33 @@ hare stats pp2024-rl-dev-container
 hare usage
 # Check processes running on your behalf
 ps -aux | grep pp2024
-# Use top outside container
+# Use top outside the container
 top
-# Use top inside container
+# Use top inside the container
 hare top pp2024-rl-dev-container
 # Check any logs (e.g. if you print to stdout)
 hare logs pp2024-rl-dev-container
-# Checking logs when you know they are too many
+# Checking logs when you know there are too many
 hare logs -f -n 16 pp2024-rl-dev-container
 ```
 
 ### Cleanup after yourself
 
-When a container is stopped it's automatically removed because we pass the `--rm` flag. But we need to make sure it's stopped.
+When a container is stopped, it's automatically removed because we pass the `--rm` flag. But we need to make sure it's stopped.
 
 ```bash
-# When in doubt run this to see how many of your containers are currently running
+# When in doubt, run this to see how many of your containers are currently running
 hare me
 # To stop it from running (will be auto-removed)
 hare stop pp2024-rl-dev-container
-# When something goes wrong you can try
+# When something goes wrong, you can try
 hare rm pp2024-rl-dev-container
 hare kill pp2024-rl-dev-container
 ```
 
 ### Copy data back to your personal machine
 
-This is useful if you want to check any plots (this might be possible with port forwarding too). 
+This is useful if you want to check any plots (this might also be possible with port forwarding).
 
 ```bash
 # Copy all files back to your personal machine (run this on your machine)
