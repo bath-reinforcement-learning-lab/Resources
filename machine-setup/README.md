@@ -30,6 +30,7 @@ $ sudo systemctl start ssh
 $ sudo systemctl enable ssh
 ```
 
+To SSH into a university-managed device you need to either be connected to the university network (eduroam) or use the university's VPN (check instructions on how to set this up on your personal device [here](https://www.bath.ac.uk/guides/setting-up-vpn-on-your-device/)).
 You should now be able to ssh into your new machine (e.g. from your laptop) with
 ```bash
 ssh <usernameYouChoseWhenInstallingLinux>@<publicIpAddress>
