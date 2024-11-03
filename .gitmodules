@@ -1,0 +1,3 @@
+[submodule "qr-generation"]
+	path = qr-generation
+	url = https://github.com/panispani/qr-generation
