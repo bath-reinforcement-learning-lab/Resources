@@ -347,7 +347,7 @@ echo "Completed Command 2" >> $LOGFILE
 ## Build and run the container
 
 
-If you have a different CUDA version than mine, building the docker container in the `my-local-code-repo` might break because of package version clashes/incompatibility (the build command is the first command of next code snippet). In that case, do
+If you have a different CUDA version than mine, building the docker container in the `my-local-code-repo` might break because of package version clashes/incompatibility (the build command is the first command of next code snippet). **Only** in that case, do the following
 ```bash
 rm requirements.txt
 touch requirements.txt
@@ -365,7 +365,7 @@ docker build -t pp2024/ppo-image .
 docker image prune
 ```
 
-First, let's check that you can run the container and have GPU access inside.
+Regardless of whether you executed the previous code block or not, let's check that you can run the container and have GPU access inside.
 ```bash
 # Make sure you are in the directory with the Dockerfile
 # Build the docker image
@@ -378,8 +378,13 @@ docker build -t pp2024/ppo-image .
 # --gpus what GPUs to use
 # --user you will be the same user inside the container (remove this to be root)
 docker run -it --rm -v $(pwd):/workspace --name pp2024-ppo-container --gpus all pp2024/ppo-image bash
+# Alternative to use only a specific GPU
+# '"device=0"'
+# You can also specify multiple GPUs with
+# '"device=0,2,5"'
+docker run -it --rm -v $(pwd):/workspace --name pp2024-ppo-container --gpus '"device=0"' pp2024/ppo-image bash
 # Now you are inside the container
-nvidia-smi
+nvidia-smi # should display the exact GPUs you pass as arguments
 python check_installation.py
 # From another terminal, you can check that the container is running with
 docker ps
