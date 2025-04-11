@@ -1,5 +1,5 @@
 # -1. What is this
-You've got a fresh machine with a GPU on it (possibly from the Department) and want to set it up. In this tutorial, please replace **pp2024** with your username and avoid skipping non-optional sections.
+You've got a fresh machine with a GPU on it (possibly from the University Department) and want to set it up. In this tutorial, please replace **pp2024** with your username and avoid skipping non-optional sections.
 
 # 0. Get an OS
 In this tutorial, we'll install Linux on your machine. If your machine comes pre-installed with Windows, you might want to back up your activation key or create a dual boot. Consideration for dual boot: If you never intend to use Windows, you're just wasting a disk partition.
